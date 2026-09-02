@@ -1,78 +1,56 @@
-# AGENTS.md — Dot (iOS)
+# AGENTS.md — Dot app build
 
-This file is the handoff brief for whichever coding agent (or engineer) builds this app next. This repo was just initialized from design assets and product context gathered elsewhere — **there is no code in this repo yet.** Read this file and `designs/design-handoff.md` before writing anything.
+Read `designs/design-handoff.md` before building the app. The approved interaction design is also runnable in `prototype/DotWebPrototype/`.
 
-## What this project is
+## Product
 
-**Dot** — previously called "Dot Matrix" and "Latte Dot" (all three names refer to the same product; the copy in the current design export still says "Dot Matrix," the current product name is "Dot"). A simple iOS app centered on medication dosage safety: log a dose, and the app tells you when it's safe to take the next one and whether you've hit today's limit.
+**Dot** is a minimal, local-first iOS medication-dose logger for individuals and families. It checks only the limits entered by the user; it is not a dosing authority, drug database, interaction checker, clinical record, or EHR.
 
-Product framing, verbatim from the design's own copy: *"Use the numbers from the pharmacist label or the packet — Dot only checks the limits you set here."* This is a **personal safety utility, not a clinical/EHR system** — it does not carry its own drug database or dosing authority. It stores whatever limits the user enters and checks against those. Keep this framing intact in any copy, onboarding, or validation logic added later — don't quietly turn it into something that implies clinical guidance.
+The product name is always **dot** in the interface. The `dot by latte` lockup appears only during launch.
 
-### Where it fits in the wider product
+## Current source of truth
 
-- Built by **Latte Labs** / **Latte Health Ltd**, a UK company whose core product is an AI medical scribe / teleconsulting platform for the UK healthcare market (NHS-facing, MHRA/DTAC/DSPT compliance, partner-led GTM, competing with Heidi Health / Tortus).
-- Dot is a separate, lightweight, **consumer/family-facing companion app**, not a rebuild of the scribe product and not the practitioner-oversight side of the business — those are different surfaces. Don't pull in scribe-platform architecture or assumptions.
-- The "Me / Son" profile switcher in the Status screen confirms family/dependent tracking (e.g. a parent tracking a child's or elderly relative's medication alongside their own) is core, not an edge case.
+Use these in order:
 
-## Design source
+1. `designs/design-handoff.md` — approved visual and behaviour specification.
+2. `prototype/DotWebPrototype/` — working interaction reference.
+3. `designs/screens/*.png` — historical exploration only. These exports are superseded where they conflict with the approved handoff.
 
-- `designs/screens/*.png` — 4 exported screens (Home/category picker, medication picker, Add Medication sheet, Status+Settings).
-- `designs/design-handoff.md` — full screen-by-screen spec: layout, sampled color tokens, states, interactions, and **explicit open questions/edge cases the screens don't answer**. Read it fully before implementing any screen; it calls out several things that need a decision (empty states, the log-commit trigger on the medication-picker sheet, dark mode, background-theming consistency) rather than guessing them.
-- No Figma file or design-tool connector was available when this handoff was written — colors in the spec were sampled from the PNG pixels directly, so they're close approximations, not certified tokens. Re-derive/confirm exact values if a Figma source turns up later.
+Do not restore the old lavender/teal palette, Home A/B prototype control, green/amber status colours, status pills, or repeated `dot by latte` lockup.
 
-## Suggested technical approach (recommendation, not a locked decision)
+## Recommended app approach
 
-No tech stack was specified for this app anywhere in the source material, so treat the following as a sensible default to start from, not a constraint to defend:
+- SwiftUI, targeting iOS 17 or later.
+- Apple system typography and SF Symbols.
+- SwiftData for profiles, medications, and dose logs.
+- Local-first MVP with no backend or account requirement.
+- VoiceOver labels, Dynamic Type, Reduce Motion, and minimum 44pt controls.
 
-- **SwiftUI, native iOS**, targeting a recent iOS version (17+) — the brief is explicitly "a simple iOS app," the screens are pure native-iOS patterns (sheets, segmented controls, steppers, tab bar), and there's no indication of a cross-platform or backend requirement.
-- **Local-first storage** (SwiftData or Core Data) — nothing in the design implies a server, login, or sync; dose logging and limit-checking can run entirely on-device. Multi-profile ("Me / Son") is local family-member records, not multi-user accounts, unless the next agent learns otherwise.
-- **No backend/auth for MVP.** If cloud sync across a user's own devices or sharing with a practitioner becomes a requirement later, that's a deliberate scope expansion — flag it rather than building toward it speculatively.
+## Core model
 
-## Data model, inferred from the screens
-
-```
+```text
 Profile
-  id, name, avatarInitial, avatarColor
+  id, name, avatarInitial
 
-Medication (belongs to a Profile)
-  id, name, doseAmount, doseUnit (mg | ml | tab)
-  maxPerDay (Int)          // "Max per 24h" stepper
-  minimumGapHours (Double) // "Minimum gap" stepper
+Medication
+  id, profileID, name, doseAmount, doseUnit
+  maximumDosesPerRolling24Hours, minimumGapHours
 
-DoseLog (belongs to a Medication)
-  id, timestamp
+DoseLog
+  id, medicationID, timestamp
 ```
 
-Derived (not stored) status per medication, per `designs/design-handoff.md`'s worked example:
-```
-timeSinceLast = now - mostRecentDoseLog.timestamp
-dosesToday    = count(DoseLog where timestamp is today)
+Compute status from dose logs in the preceding rolling 24 hours, not by calendar day. Danger is shown only when a configured limit is reached. The product must continue to say that it checks only user-entered limits.
 
-if timeSinceLast < minimumGapHours:
-    status = "Wait {minimumGapHours - timeSinceLast, rounded up to nearest hour}"
-elif dosesToday >= maxPerDay:
-    status = "Limit reached"
-else:
-    status = "Safe now"
-```
-Confirm the rounding rule and the precedence (gap-check before limit-check) with the user before shipping — it's backed out from one example, not specified directly.
+## Build constraints
 
-## Non-goals (explicit, don't build toward these without a new decision)
+- Dot is the default Home action.
+- Direct action is an optional Home preference in Settings.
+- Today contains the rolling 24-hour view; Past contains older logs.
+- Only danger uses colour: red border plus warning symbol. Ordinary/waiting rows stay neutral.
+- Never rely on colour alone.
+- Light/dark is switchable from the header icon; full appearance options remain in Settings.
+- Support both 12-hour and 24-hour time.
+- Preserve the dithered launch animation and provide a reduced-motion version.
 
-- Not a clinical dosing database or drug-interaction checker.
-- Not the practitioner/EHR side of Latte Health.
-- Not cloud-synced or multi-device for MVP.
-- Food and Exercise logging exist as picker options in the design but have **no designed screens** — don't invent flows for them; either stub them as "coming soon" or ask before designing.
-
-## Open questions to resolve before/while building
-
-These are called out in detail in `designs/design-handoff.md`; summarized here:
-1. What happens on first launch / with zero medications saved (empty states throughout)?
-2. What actually commits a log entry on the medication-picker sheet (screen 2) — the "Ready to log" pill implies a two-step flow whose second step isn't in the export?
-3. Is Settings really inline on the Status tab permanently, or is that a scrolled/merged screenshot artifact given the tab bar has a separate Settings icon?
-4. Dark mode and a colour-blind-friendly palette are settings in the UI but have no corresponding designed screens.
-5. Editing/deleting an existing medication isn't designed (only "Add").
-
-## How this repo was set up
-
-This repo was initialized from a design-only project folder (4 PNG exports, no prior code) plus product context pulled from prior conversations about Latte Health / Dot. It was set up for migration to a different coding agent — there is no existing app target, Xcode project, or CI in here yet. Start by scaffolding a new iOS app project, then build against `designs/design-handoff.md` screen by screen.
+Before declaring the app complete, test the full flow: launch → log a dose → confirmation → Today status → Past history, in light and dark mode and both time formats.
