@@ -1,0 +1,570 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		100000000000000000000001 /* DotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000001 /* DotApp.swift */; };
+		100000000000000000000002 /* DotModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000002 /* DotModels.swift */; };
+		100000000000000000000003 /* DoseLimitEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000003 /* DoseLimitEvaluator.swift */; };
+		100000000000000000000004 /* MedicationDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000004 /* MedicationDraft.swift */; };
+		100000000000000000000005 /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000005 /* AppPreferences.swift */; };
+		100000000000000000000006 /* DotFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000006 /* DotFormatters.swift */; };
+		100000000000000000000007 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000007 /* AppRootView.swift */; };
+		100000000000000000000008 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000008 /* LaunchView.swift */; };
+		100000000000000000000009 /* AppHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000009 /* AppHeaderView.swift */; };
+		10000000000000000000000A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000A /* HomeView.swift */; };
+		10000000000000000000000B /* LogDoseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000B /* LogDoseSheet.swift */; };
+		10000000000000000000000C /* AddMedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000C /* AddMedicationView.swift */; };
+		10000000000000000000000D /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000D /* StatusView.swift */; };
+		10000000000000000000000E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000E /* SettingsView.swift */; };
+		10000000000000000000000F /* DoseLimitEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000F /* DoseLimitEvaluatorTests.swift */; };
+		100000000000000000000010 /* MedicationDraftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000010 /* MedicationDraftTests.swift */; };
+		100000000000000000000011 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200000000000000000000013 /* XCTest.framework */; };
+		100000000000000000000012 /* DotFlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000014 /* DotFlowUITests.swift */; };
+		100000000000000000000013 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200000000000000000000013 /* XCTest.framework */; };
+		100000000000000000000014 /* ProfileViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000016 /* ProfileViews.swift */; };
+		100000000000000000000015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000017 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		300000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 700000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 600000000000000000000001;
+			remoteInfo = dot;
+		};
+		300000000000000000000003 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 700000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 600000000000000000000001;
+			remoteInfo = dot;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		200000000000000000000001 /* DotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotApp.swift; sourceTree = "<group>"; };
+		200000000000000000000002 /* DotModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotModels.swift; sourceTree = "<group>"; };
+		200000000000000000000003 /* DoseLimitEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseLimitEvaluator.swift; sourceTree = "<group>"; };
+		200000000000000000000004 /* MedicationDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationDraft.swift; sourceTree = "<group>"; };
+		200000000000000000000005 /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
+		200000000000000000000006 /* DotFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotFormatters.swift; sourceTree = "<group>"; };
+		200000000000000000000007 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+		200000000000000000000008 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		200000000000000000000009 /* AppHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHeaderView.swift; sourceTree = "<group>"; };
+		20000000000000000000000A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		20000000000000000000000B /* LogDoseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDoseSheet.swift; sourceTree = "<group>"; };
+		20000000000000000000000C /* AddMedicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMedicationView.swift; sourceTree = "<group>"; };
+		20000000000000000000000D /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		20000000000000000000000E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		20000000000000000000000F /* DoseLimitEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseLimitEvaluatorTests.swift; sourceTree = "<group>"; };
+		200000000000000000000010 /* MedicationDraftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationDraftTests.swift; sourceTree = "<group>"; };
+		200000000000000000000011 /* dot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		200000000000000000000012 /* dotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		200000000000000000000013 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = System/Library/Frameworks/XCTest.framework; sourceTree = SDKROOT; };
+		200000000000000000000014 /* DotFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotFlowUITests.swift; sourceTree = "<group>"; };
+		200000000000000000000015 /* dotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		200000000000000000000016 /* ProfileViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViews.swift; sourceTree = "<group>"; };
+		200000000000000000000017 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		400000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		400000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000011 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		400000000000000000000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000013 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		500000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				500000000000000000000002 /* DotApp */,
+				500000000000000000000008 /* DotAppTests */,
+				50000000000000000000000B /* DotAppUITests */,
+				500000000000000000000009 /* Frameworks */,
+				50000000000000000000000A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		500000000000000000000002 /* DotApp */ = {
+			isa = PBXGroup;
+			children = (
+				500000000000000000000003 /* App */,
+				500000000000000000000004 /* Models */,
+				500000000000000000000005 /* Domain */,
+				500000000000000000000006 /* Support */,
+				500000000000000000000007 /* Views */,
+				500000000000000000000012 /* Resources */,
+			);
+			path = DotApp;
+			sourceTree = "<group>";
+		};
+		500000000000000000000003 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000001 /* DotApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		500000000000000000000004 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000002 /* DotModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		500000000000000000000005 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000003 /* DoseLimitEvaluator.swift */,
+				200000000000000000000004 /* MedicationDraft.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		500000000000000000000006 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000005 /* AppPreferences.swift */,
+				200000000000000000000006 /* DotFormatters.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		500000000000000000000007 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000007 /* AppRootView.swift */,
+				200000000000000000000008 /* LaunchView.swift */,
+				200000000000000000000009 /* AppHeaderView.swift */,
+				20000000000000000000000A /* HomeView.swift */,
+				20000000000000000000000B /* LogDoseSheet.swift */,
+				20000000000000000000000C /* AddMedicationView.swift */,
+				20000000000000000000000D /* StatusView.swift */,
+				20000000000000000000000E /* SettingsView.swift */,
+				200000000000000000000016 /* ProfileViews.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		500000000000000000000012 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000017 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		500000000000000000000008 /* DotAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				20000000000000000000000F /* DoseLimitEvaluatorTests.swift */,
+				200000000000000000000010 /* MedicationDraftTests.swift */,
+			);
+			path = DotAppTests;
+			sourceTree = "<group>";
+		};
+		500000000000000000000009 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000013 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50000000000000000000000A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000011 /* dot.app */,
+				200000000000000000000012 /* dotTests.xctest */,
+				200000000000000000000015 /* dotUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50000000000000000000000B /* DotAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000014 /* DotFlowUITests.swift */,
+			);
+			path = DotAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		600000000000000000000001 /* dot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 800000000000000000000002 /* Build configuration list for PBXNativeTarget "dot" */;
+			buildPhases = (
+				900000000000000000000001 /* Sources */,
+				400000000000000000000001 /* Frameworks */,
+				900000000000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = dot;
+			productName = dot;
+			productReference = 200000000000000000000011 /* dot.app */;
+			productType = "com.apple.product-type.application";
+		};
+		600000000000000000000002 /* dotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 800000000000000000000003 /* Build configuration list for PBXNativeTarget "dotTests" */;
+			buildPhases = (
+				900000000000000000000003 /* Sources */,
+				400000000000000000000002 /* Frameworks */,
+				900000000000000000000004 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				300000000000000000000002 /* PBXTargetDependency */,
+			);
+			name = dotTests;
+			productName = dotTests;
+			productReference = 200000000000000000000012 /* dotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		600000000000000000000003 /* dotUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 800000000000000000000004 /* Build configuration list for PBXNativeTarget "dotUITests" */;
+			buildPhases = (
+				900000000000000000000005 /* Sources */,
+				400000000000000000000003 /* Frameworks */,
+				900000000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				300000000000000000000004 /* PBXTargetDependency */,
+			);
+			name = dotUITests;
+			productName = dotUITests;
+			productReference = 200000000000000000000015 /* dotUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		700000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					600000000000000000000001 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					600000000000000000000002 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = 600000000000000000000001;
+					};
+					600000000000000000000003 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = 600000000000000000000001;
+					};
+				};
+			};
+			buildConfigurationList = 800000000000000000000001 /* Build configuration list for PBXProject "Dot" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 500000000000000000000001;
+			productRefGroup = 50000000000000000000000A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				600000000000000000000001 /* dot */,
+				600000000000000000000002 /* dotTests */,
+				600000000000000000000003 /* dotUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		900000000000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000015 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		900000000000000000000004 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		900000000000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		900000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000001 /* DotApp.swift in Sources */,
+				100000000000000000000002 /* DotModels.swift in Sources */,
+				100000000000000000000003 /* DoseLimitEvaluator.swift in Sources */,
+				100000000000000000000004 /* MedicationDraft.swift in Sources */,
+				100000000000000000000005 /* AppPreferences.swift in Sources */,
+				100000000000000000000006 /* DotFormatters.swift in Sources */,
+				100000000000000000000007 /* AppRootView.swift in Sources */,
+				100000000000000000000008 /* LaunchView.swift in Sources */,
+				100000000000000000000009 /* AppHeaderView.swift in Sources */,
+				10000000000000000000000A /* HomeView.swift in Sources */,
+				10000000000000000000000B /* LogDoseSheet.swift in Sources */,
+				10000000000000000000000C /* AddMedicationView.swift in Sources */,
+				10000000000000000000000D /* StatusView.swift in Sources */,
+				10000000000000000000000E /* SettingsView.swift in Sources */,
+				100000000000000000000014 /* ProfileViews.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		900000000000000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10000000000000000000000F /* DoseLimitEvaluatorTests.swift in Sources */,
+				100000000000000000000010 /* MedicationDraftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		900000000000000000000005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000012 /* DotFlowUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		300000000000000000000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 600000000000000000000001 /* dot */;
+			targetProxy = 300000000000000000000001 /* PBXContainerItemProxy */;
+		};
+		300000000000000000000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 600000000000000000000001 /* dot */;
+			targetProxy = 300000000000000000000003 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A00000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A00000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A00000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = dot;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.latte.dot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A00000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = dot;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.latte.dot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A00000000000000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.latte.dot.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dot.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/dot";
+			};
+			name = Debug;
+		};
+		A00000000000000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.latte.dot.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dot.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/dot";
+			};
+			name = Release;
+		};
+		A00000000000000000000007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.latte.dot.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = dot;
+			};
+			name = Debug;
+		};
+		A00000000000000000000008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.latte.dot.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = dot;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		800000000000000000000001 /* Build configuration list for PBXProject "Dot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000001 /* Debug */,
+				A00000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		800000000000000000000002 /* Build configuration list for PBXNativeTarget "dot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000003 /* Debug */,
+				A00000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		800000000000000000000003 /* Build configuration list for PBXNativeTarget "dotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000005 /* Debug */,
+				A00000000000000000000006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		800000000000000000000004 /* Build configuration list for PBXNativeTarget "dotUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000007 /* Debug */,
+				A00000000000000000000008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 700000000000000000000001 /* Project object */;
+}
