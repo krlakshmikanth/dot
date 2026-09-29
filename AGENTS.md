@@ -16,7 +16,7 @@ Use these in order:
 2. `prototype/DotWebPrototype/` — working interaction reference.
 3. `designs/screens/*.png` — historical exploration only. These exports are superseded where they conflict with the approved handoff.
 
-Do not restore the old lavender/teal palette, Home A/B prototype control, green/amber status colours, status pills, or repeated `dot by latte` lockup.
+Do not restore the old lavender/teal palette, Home A/B prototype control, green/amber status colours, status pills, or repeated `dot by latte` lockup. The selected Day map update at the top of the handoff supersedes the earlier Dot and Direct action Home variants.
 
 ## Recommended app approach
 
@@ -44,9 +44,9 @@ Compute status from dose logs in the preceding rolling 24 hours, not by calendar
 
 ## Build constraints
 
-- Dot is the default Home action.
-- Direct action is an optional Home preference in Settings.
-- Today contains the rolling 24-hour view; Past contains older logs.
+- Day map is the only Home hierarchy.
+- A plan is persisted separately and never counts as a taken dose until explicitly confirmed.
+- Home shows the rolling 24-hour record; History contains editable dose records grouped by day.
 - Only danger uses colour: red border plus warning symbol. Ordinary/waiting rows stay neutral.
 - Never rely on colour alone.
 - Light/dark is switchable from the header icon; full appearance options remain in Settings.
@@ -54,7 +54,7 @@ Compute status from dose logs in the preceding rolling 24 hours, not by calendar
 - Keep the app icon as a single centred black dot on an opaque white background.
 - Preserve the dithered launch animation and provide a reduced-motion version.
 
-Before declaring the app complete, test the full flow: launch → log a dose → confirmation → Today status → Past history in light and dark mode, and verify times follow the simulator or device setting.
+Before declaring the app complete, test the full flow: launch → plan a dose → confirm it as taken → Day map → edit the record → History in light and dark mode, and verify times follow the simulator or device setting.
 
 ## Production implementation
 

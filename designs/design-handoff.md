@@ -2,6 +2,20 @@
 
 Status: **approved for app implementation**
 
+## Selected Day map update
+
+The later cross-platform prototype selected **Day map** as the only Home hierarchy. This section supersedes the older Dot action, Direct action, and Today/Past shell details below where they conflict.
+
+- Home opens with `Your day, at a glance.` and the confirmed rolling-24-hour count.
+- Show a pending plan separately and label it as not recorded as taken.
+- Show confirmed and uncertain recent records newest first. Uncertain records are visible but excluded from the confirmed count.
+- The primary action is `Plan a dose` or `Finish planned dose` when a plan is pending.
+- Planning never creates dose history. Only explicit `I took it` confirmation creates a confirmed record.
+- Bottom navigation is Home, History, Settings.
+- History lets the user correct amount or time, confirm an uncertain record, remove a mistake, and record an earlier dose.
+- Settings lets the user add, edit, archive, and restore medicines. Historical records keep the medicine name, amount, and unit recorded at the time.
+- Selected health-related symbols use Health Icons under CC0. Generic navigation and platform controls remain native.
+
 Product: **dot**
 
 Working reference: `prototype/DotWebPrototype/`
@@ -30,70 +44,43 @@ The PNG files in `designs/screens/` document an earlier direction. They are reta
 
 Header:
 
-- Leading: active profile chip, such as `M · Me`, opening profile status.
-- Centre: current time, respecting the selected 12-hour or 24-hour format.
+- Leading: active profile chip opening the local profile switcher.
 - Trailing: one circular appearance icon. Show a moon in light mode and a sun in dark mode. Tapping switches immediately between light and dark without navigating away.
 
 Bottom navigation:
 
 - Home
-- Status
+- History
 - Settings
 
 Do not display the brand lockup in the shell.
 
 ## Home
 
-### Default: Dot action
+- Heading: `Your day, at a glance.`
+- Summary: confirmed doses in the rolling 24-hour window and the boundary `Only what this device has recorded`.
+- Show a pending plan above the action and label it `NOT RECORDED AS TAKEN`.
+- Show uncertain records in the recent timeline but exclude them from the confirmed count.
+- Primary action: `Plan a dose`, changing to `Finish planned dose` while a plan is pending.
+- Recent records are newest first and open the record editor.
 
-- A centred 88pt black dot is the primary action.
-- A small contrasting centre point preserves the dot-matrix identity.
-- Label: `Log a dose`.
-- Supporting copy: `Dot checks only the limits you entered.`
-- Tapping the dot opens the medication selection sheet.
-
-### Optional: Direct action
-
-Users can select this under **Settings → Home action**. Do not show an A/B or prototype switcher on Home.
-
-- Heading: `Log a dose`.
-- Supporting row may show the most recent medication and elapsed time.
-- Primary control is a circular black button containing only the SF Symbol `plus`.
-- Its accessibility label is `Log a dose`.
-
-Dot action is the default on first launch.
-
-## Log-dose sheet
+## Plan-dose sheet
 
 1. Present `Choose a medicine`.
-2. Show saved medications with name and dose.
-3. Selecting one enables `Log dose now`.
-4. Confirmation view says `Dose logged` and displays the recorded time.
-5. Offer `View status`.
+2. Show saved active medicines with name and dose.
+3. Review the selected person, medicine, entered limits, and confirmed rolling-24-hour record.
+4. Block planning when the user-entered maximum has been reached. Display the red warning icon, border, and accessible danger wording.
+5. `Plan this dose` creates a pending plan only.
+6. `Yes, I took it` converts the pending plan into a confirmed dose record.
+7. `I’ll confirm later` preserves the pending plan. `Cancel plan` removes it without adding history.
 
-The confirmation must say that status is based only on the limits the user entered.
+## History
 
-## Status
-
-Status starts with a profile row and a Today/Past segmented control.
-
-### Today
-
-- Heading: `Doses in the rolling 24 hours`.
-- Include dose activity from the preceding 24 hours.
-- Each medication row contains a neutral icon, medication name and dose, and a concise activity detail.
-- Do not show right-aligned status pills or text labels such as `Within your limits`, `Wait 1 hr`, or `Limit reached`.
-- Ordinary and waiting rows use the neutral system border.
-- Danger rows alone use a red border and red warning triangle.
-- Include danger in the VoiceOver description so the meaning does not depend on red.
-- Do not show an In limit / Medium / Danger legend.
-
-### Past
-
-- Contains logs older than the current rolling 24-hour window.
-- Group entries by day.
-- Show time, medication name, and dose.
-- Past is history, not a second status dashboard.
+- Group confirmed and uncertain records by day.
+- Open a record to correct its amount or taken time.
+- An uncertain record can be explicitly confirmed after review.
+- A mistaken or duplicate record can be removed after confirmation.
+- `Record an earlier dose` requires the user to confirm it was actually taken.
 
 ### Danger token
 
@@ -118,16 +105,6 @@ The sheet includes:
 Use the pharmacist label or packet as the source. Dot checks the configured values and must not silently add clinical recommendations.
 
 ## Settings
-
-### Home action
-
-- Dot — default
-- Direct action
-
-### Time format
-
-- 12-hour
-- 24-hour
 
 ### Appearance
 
@@ -182,13 +159,14 @@ Exact precedence and rounding must be covered by unit tests before release. Reje
 
 - [ ] `dot by latte` appears only during launch.
 - [ ] Dithered launch and reduced-motion launch both work.
-- [ ] Dot action is the first-launch Home default.
-- [ ] Direct action can be selected only from Settings.
+- [ ] Day map is the only Home hierarchy.
+- [ ] A pending plan is visibly separate and excluded from dose history.
 - [ ] Header icon switches light/dark without routing.
 - [ ] 12-hour and 24-hour formats update every displayed timestamp.
-- [ ] A dose can be selected, logged, and confirmed.
-- [ ] Today uses a true rolling 24-hour window.
-- [ ] Past contains older logs grouped by day.
+- [ ] A dose can be selected, planned, and explicitly confirmed as taken.
+- [ ] Home uses a true rolling 24-hour window and excludes uncertain records from its confirmed count.
+- [ ] History groups records by day and supports correcting amount or time.
+- [ ] Medicines can be edited, archived, and restored without rewriting historical snapshots.
 - [ ] Only danger rows use red; no green/amber coding or status legend appears.
 - [ ] Danger also has a warning symbol and VoiceOver description.
 - [ ] Add-medication validation and rolling-window logic have tests.
@@ -199,7 +177,7 @@ Exact precedence and rounding must be covered by unit tests before release. Reje
 From the repository root:
 
 ```sh
-python3 -m http.server 4173 --directory prototype/DotWebPrototype
+python3 -m http.server 4175 --directory prototype/DotCrossPlatformPrototype
 ```
 
-Then open `http://localhost:4173/`.
+Then open `http://localhost:4175/`.
