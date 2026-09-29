@@ -30,6 +30,8 @@ dot helps individuals and families record medicine doses and stay aware of the l
 
 The current app has no account, backend, analytics, advertising SDK, or cloud sync. App data remains in the local SwiftData store. Profile age and the optional Medical ID are sensitive local data and must not be added to logs, analytics, notifications, screenshots, or exports.
 
+See the public [Latte Dot Privacy Policy](PRIVACY.md) for the App Store disclosure and support contact.
+
 ## Requirements
 
 - macOS with a current version of Xcode capable of targeting iOS 17 or later
