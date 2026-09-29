@@ -25,6 +25,8 @@ The app does not transmit medication, profile, Medical ID, or dose-history data 
 
 App data remains on the user's device until it is edited or removed by the user, or until the app and its data are deleted from the device. Copies may remain in device backups managed by the user or the operating system.
 
+For instructions and choices relating to optional information, individual records, all app data, device backups, and tracking, see [User Privacy Choices](PRIVACY-CHOICES.md).
+
 ## Children and family profiles
 
 An adult may create local profiles for family members. Because the app does not transmit data to Latte Health Ltd, we do not knowingly collect personal data from children.
@@ -39,4 +41,4 @@ If a future version introduces data collection or network services, this policy 
 
 ## Contact
 
-For privacy or support questions, open an issue in the [Latte Dot support repository](https://github.com/krlakshmikanth/dot/issues).
+For privacy or support questions, open an issue in the [Latte Dot support repository](https://github.com/krlakshmikanth/dot/issues). GitHub issues are public, so do not include names, Medical ID information, medicine details, dose history, or other sensitive information.
