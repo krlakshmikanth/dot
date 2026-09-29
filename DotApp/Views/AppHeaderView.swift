@@ -1,5 +1,19 @@
 import SwiftUI
 
+struct HealthIcon: View {
+    let name: String
+    var size: CGFloat = 24
+
+    var body: some View {
+        Image(name)
+            .renderingMode(.template)
+            .resizable()
+            .scaledToFit()
+            .frame(width: size, height: size)
+            .accessibilityHidden(true)
+    }
+}
+
 struct AppHeaderView: View {
     let profile: Profile
     let colorScheme: ColorScheme

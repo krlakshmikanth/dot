@@ -7,8 +7,8 @@ struct AppRootView: View {
     @Query(sort: \Profile.createdAt) private var profiles: [Profile]
     @Query(sort: \Medication.name) private var medications: [Medication]
     @Query(sort: \DoseLog.timestamp, order: .reverse) private var doseLogs: [DoseLog]
+    @Query(sort: \PlannedDose.plannedAt, order: .reverse) private var plannedDoses: [PlannedDose]
 
-    @AppStorage("homeAction") private var homeActionRawValue = HomeAction.dot.rawValue
     @AppStorage("appearance") private var appearanceRawValue = AppAppearance.system.rawValue
     @AppStorage("reduceMotionInDot") private var reduceMotionInDot = false
     @AppStorage("selectedProfileID") private var selectedProfileIDRawValue = ""
@@ -31,11 +31,14 @@ struct AppRootView: View {
         return medications.filter { $0.profileID == profileID }
     }
 
-    private var homeAction: Binding<HomeAction> {
-        Binding(
-            get: { HomeAction(rawValue: homeActionRawValue) ?? .dot },
-            set: { homeActionRawValue = $0.rawValue }
-        )
+    private var activeDoseLogs: [DoseLog] {
+        let medicationIDs = Set(activeMedications.map(\.id))
+        return doseLogs.filter { medicationIDs.contains($0.medicationID) }
+    }
+
+    private var activePlannedDose: PlannedDose? {
+        guard let profileID = activeProfile?.id else { return nil }
+        return plannedDoses.first { $0.profileID == profileID }
     }
 
     private var appearance: Binding<AppAppearance> {
@@ -58,27 +61,27 @@ struct AppRootView: View {
 
                     TabView(selection: $selectedTab) {
                         HomeView(
-                            homeAction: homeAction.wrappedValue,
                             profile: activeProfile,
                             medications: activeMedications,
-                            doseLogs: doseLogs,
-                            onViewStatus: { selectedTab = .status }
+                            doseLogs: activeDoseLogs,
+                            plannedDose: activePlannedDose,
+                            onViewHistory: { selectedTab = .history }
                         )
                         .tag(AppTab.home)
                         .tabItem { Label("Home", systemImage: "house") }
 
                         StatusView(
                             medications: activeMedications,
-                            doseLogs: doseLogs,
+                            doseLogs: activeDoseLogs,
                             onAddMedication: { showAddMedication = true }
                         )
-                        .tag(AppTab.status)
-                        .tabItem { Label("Status", systemImage: "list.bullet.rectangle") }
+                        .tag(AppTab.history)
+                        .tabItem { Label("History", systemImage: "clock.arrow.circlepath") }
 
                         SettingsView(
                             activeProfile: activeProfile,
                             profiles: profiles,
-                            homeAction: homeAction,
+                            medications: activeMedications,
                             appearance: appearance,
                             reduceMotionInDot: $reduceMotionInDot,
                             onSelectProfile: selectProfile
@@ -100,7 +103,10 @@ struct AppRootView: View {
             }
         }
         .preferredColorScheme(appearance.wrappedValue.preferredColorScheme)
-        .task { createDefaultProfileIfNeeded() }
+        .task {
+            createDefaultProfileIfNeeded()
+            backfillLegacyDoseSnapshots()
+        }
         .sheet(isPresented: $showAddMedication) {
             if let activeProfile {
                 AddMedicationView(profileID: activeProfile.id)
@@ -135,5 +141,19 @@ struct AppRootView: View {
 
     private func toggleAppearance() {
         appearance.wrappedValue = colorScheme == .dark ? .light : .dark
+    }
+
+    private func backfillLegacyDoseSnapshots() {
+        for log in doseLogs where log.recordedMedicationName == nil
+            || log.recordedDoseAmount == nil
+            || log.recordedDoseUnit == nil {
+            guard let medication = medications.first(where: { $0.id == log.medicationID }) else { continue }
+            log.recordedMedicationName = medication.name
+            log.recordedDoseAmount = medication.doseAmount
+            log.recordedDoseUnit = medication.doseUnit
+            if log.confirmationState == nil {
+                log.confirmationState = "confirmed"
+            }
+        }
     }
 }

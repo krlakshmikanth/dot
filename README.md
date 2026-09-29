@@ -4,7 +4,7 @@
   <img src="DotApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png" width="96" height="96" alt="dot app icon">
 </p>
 
-**A minimal, local-first medication dose logger for iPhone.**
+**A simple, proactive, local-first medication dose planner and logger for iPhone.**
 
 dot helps individuals and families record medicine doses and stay aware of the limits they entered. It keeps profiles, medicines, limits, and dose history on the device using SwiftData.
 
@@ -13,12 +13,16 @@ dot helps individuals and families record medicine doses and stay aware of the l
 
 ## Features
 
-- Log a dose in a few taps.
+- See confirmed doses, uncertainty and a pending plan together on the Day map.
+- Plan a dose before taking it, then explicitly confirm what happened.
+- Keep planned doses out of dose history until they are confirmed as taken.
 - Keep medicines and history separated across local profiles.
 - Count doses in a rolling 24-hour window.
 - Show the remaining time in a user-entered minimum gap.
 - Highlight when a user-entered maximum has been reached.
-- Browse recent and earlier dose history.
+- Correct a dose amount or time, resolve an uncertain record, or remove a mistaken entry.
+- Add, edit, archive and restore medicines without rewriting historical dose snapshots.
+- Record a dose that was already taken at its actual time.
 - Follow the system time format, Dynamic Type, VoiceOver, and Reduce Motion settings.
 - Choose light, dark, or system appearance.
 
@@ -31,7 +35,7 @@ The current app has no account, backend, analytics, advertising SDK, or cloud sy
 - macOS with a current version of Xcode capable of targeting iOS 17 or later
 - iOS 17 or later
 
-The project has no third-party package dependencies.
+The project has no third-party package dependencies. Selected medicine, calendar, uncertainty and warning artwork comes from [Health Icons](https://healthicons.org/) under CC0.
 
 ## Getting started
 
@@ -55,7 +59,7 @@ xcodebuild \
   test
 ```
 
-The test suite covers rolling-window boundaries, configured maximums, minimum-gap calculations, invalid configurations, form validation, and the core UI journey.
+The test suite covers rolling-window boundaries, configured maximums, minimum-gap calculations, invalid configurations, form validation, and the plan, confirm, history, dose-editing, and medicine-editing journey.
 
 ## Project layout
 

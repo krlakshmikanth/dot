@@ -2,7 +2,9 @@
 
 ## Current scope
 
-The first production slice is a local-only iOS 17+ SwiftUI app. It stores profiles, medicines, user-entered limits, and dose logs with SwiftData. It does not require an account or network connection.
+The production app is a local-only iOS 17+ SwiftUI app. It stores profiles, medicines, user-entered limits, pending dose plans, and dose records with SwiftData. It does not require an account or network connection.
+
+Home uses the Day map selected in the cross-platform interaction prototype. Planning and confirmation are separate persisted states. A pending plan never counts as a taken dose. Confirmed and uncertain records are also separate, and uncertain records are excluded from safety counts until the user confirms them.
 
 Profiles are on-device records, not online accounts. Each profile has a short nickname, age, and optional user-entered Medical ID. The selected profile persists across launches, and its medicines and history stay isolated by profile ID.
 
@@ -39,6 +41,8 @@ DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer xcodebuild \
 - Validate stored and entered limits. Invalid configuration must not produce a reassuring status.
 - Rolling 24 hours means the inclusive interval from exactly 24 hours before `now` through `now`; future timestamps are excluded.
 - Reuse `DoseLimitEvaluator` for every status surface. Do not duplicate safety calculations in views.
+- Never include `PlannedDose` or uncertain `DoseLog` records in confirmed-dose counts.
+- New dose records snapshot the medicine name, amount, and unit. Editing or archiving a medicine must not rewrite earlier history.
 - Add unit tests for boundary, rounding, migration, or precedence changes before changing safety behavior.
 - Use semantic system colours and SF Symbols. Red is reserved for configured-maximum danger and must always be paired with a symbol and VoiceOver wording.
 - Check Dynamic Type, VoiceOver, Reduce Motion, light/dark appearance, and system-selected 12/24-hour formatting for user-facing changes.

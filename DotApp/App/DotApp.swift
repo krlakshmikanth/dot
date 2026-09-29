@@ -7,7 +7,8 @@ struct DotApp: App {
         let schema = Schema([
             Profile.self,
             Medication.self,
-            DoseLog.self
+            DoseLog.self,
+            PlannedDose.self
         ])
 
         let configuration = ModelConfiguration(

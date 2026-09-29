@@ -15,6 +15,28 @@ struct MedicationDraft: Equatable {
     var maximumDoses = ""
     var minimumGapHours = ""
 
+    init(
+        name: String = "",
+        doseAmount: String = "",
+        unit: DoseUnit = .milligrams,
+        maximumDoses: String = "",
+        minimumGapHours: String = ""
+    ) {
+        self.name = name
+        self.doseAmount = doseAmount
+        self.unit = unit
+        self.maximumDoses = maximumDoses
+        self.minimumGapHours = minimumGapHours
+    }
+
+    init(medication: Medication) {
+        name = medication.name
+        doseAmount = medication.doseAmount.formatted(.number.precision(.fractionLength(0...2)))
+        unit = DoseUnit(rawValue: medication.doseUnit) ?? .milligrams
+        maximumDoses = String(medication.maximumDosesPerRolling24Hours)
+        minimumGapHours = medication.minimumGapHours.formatted(.number.precision(.fractionLength(0...2)))
+    }
+
     var validatedValues: ValidatedMedication? {
         let cleanName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !cleanName.isEmpty,

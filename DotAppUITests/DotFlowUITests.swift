@@ -5,14 +5,15 @@ final class DotFlowUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testAddMedicineLogDoseAndOpenStatus() {
+    func testPlanConfirmDoseAndOpenHistory() {
         let app = XCUIApplication()
         app.launchArguments = ["-dot-ui-testing"]
         app.launch()
 
-        let logDose = app.buttons["Log a dose"]
-        XCTAssertTrue(logDose.waitForExistence(timeout: 5))
-        logDose.tap()
+        XCTAssertTrue(app.staticTexts["Your day,\nat a glance."].waitForExistence(timeout: 5))
+        let planDose = app.buttons["plan-dose"]
+        XCTAssertTrue(planDose.waitForExistence(timeout: 5))
+        planDose.tap()
 
         let addMedication = app.buttons["add-medication-from-log"]
         XCTAssertTrue(addMedication.waitForExistence(timeout: 3))
@@ -29,28 +30,60 @@ final class DotFlowUITests: XCTestCase {
 
         let medication = app.staticTexts["Metformin"]
         XCTAssertTrue(medication.waitForExistence(timeout: 3))
-        medication.tap()
 
-        let logNow = app.buttons["log-dose-now"]
-        XCTAssertTrue(logNow.isEnabled)
-        logNow.tap()
+        let createPlan = app.buttons["create-dose-plan"]
+        XCTAssertTrue(createPlan.waitForExistence(timeout: 3))
+        createPlan.tap()
 
-        XCTAssertTrue(app.staticTexts["Dose logged"].waitForExistence(timeout: 3))
-        app.buttons["view-status"].tap()
+        XCTAssertTrue(app.staticTexts["Is this dose taken?"].waitForExistence(timeout: 3))
+        app.buttons["confirm-dose-taken"].tap()
 
-        XCTAssertTrue(app.staticTexts["Status"].waitForExistence(timeout: 3))
-        XCTAssertFalse(app.staticTexts["Me"].exists)
-        let rollingWindowHeading = app.staticTexts
-            .matching(NSPredicate(format: "label CONTAINS[c] %@", "rolling 24 hours"))
-            .firstMatch
-        XCTAssertTrue(rollingWindowHeading.exists)
+        XCTAssertTrue(app.staticTexts["Dose recorded"].waitForExistence(timeout: 3))
+        app.buttons["dose-recorded-done"].tap()
+
+        XCTAssertTrue(app.staticTexts["1 confirmed dose"].waitForExistence(timeout: 3))
+        app.tabBars.buttons["History"].tap()
+        XCTAssertTrue(app.staticTexts["History"].waitForExistence(timeout: 3))
         XCTAssertTrue(app.staticTexts["Metformin"].exists)
+
+        let historyRecord = app.buttons
+            .matching(NSPredicate(format: "identifier BEGINSWITH %@", "history-dose-"))
+            .firstMatch
+        XCTAssertTrue(historyRecord.waitForExistence(timeout: 3))
+        historyRecord.tap()
+        XCTAssertTrue(app.datePickers["record-dose-time"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.buttons["save-dose-correction"].isEnabled)
+        app.buttons["save-dose-correction"].tap()
+
+        app.tabBars.buttons["Settings"].tap()
+        let manageMedicines = app.buttons["manage-medicines"]
+        XCTAssertTrue(manageMedicines.waitForExistence(timeout: 3))
+        manageMedicines.tap()
+        let editMedicine = app.buttons
+            .matching(NSPredicate(format: "identifier BEGINSWITH %@", "edit-medicine-"))
+            .firstMatch
+        XCTAssertTrue(editMedicine.waitForExistence(timeout: 3))
+        editMedicine.tap()
+        XCTAssertTrue(app.textFields["medication-name"].waitForExistence(timeout: 3))
+        XCTAssertEqual(app.textFields["medication-name"].value as? String, "Metformin")
+        XCTAssertTrue(app.buttons["save-medication"].isEnabled)
     }
 
     func testCreateAndSwitchProfiles() {
         let app = XCUIApplication()
         app.launchArguments = ["-dot-ui-testing"]
         app.launch()
+
+        let switchToDark = app.buttons["Switch to dark appearance"]
+        if switchToDark.waitForExistence(timeout: 3) {
+            switchToDark.tap()
+            XCTAssertTrue(app.buttons["Switch to light appearance"].waitForExistence(timeout: 3))
+        } else {
+            let switchToLight = app.buttons["Switch to light appearance"]
+            XCTAssertTrue(switchToLight.waitForExistence(timeout: 3))
+            switchToLight.tap()
+            XCTAssertTrue(app.buttons["Switch to dark appearance"].waitForExistence(timeout: 3))
+        }
 
         app.tabBars.buttons["Settings"].tap()
         XCTAssertFalse(app.staticTexts["Time format"].exists)

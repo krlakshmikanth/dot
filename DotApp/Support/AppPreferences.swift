@@ -1,19 +1,5 @@
 import SwiftUI
 
-enum HomeAction: String, CaseIterable, Identifiable {
-    case dot
-    case direct
-
-    var id: String { rawValue }
-
-    var title: String {
-        switch self {
-        case .dot: "Dot"
-        case .direct: "Direct action"
-        }
-    }
-}
-
 enum AppAppearance: String, CaseIterable, Identifiable {
     case light
     case dark
@@ -33,6 +19,6 @@ enum AppAppearance: String, CaseIterable, Identifiable {
 
 enum AppTab: Hashable {
     case home
-    case status
+    case history
     case settings
 }

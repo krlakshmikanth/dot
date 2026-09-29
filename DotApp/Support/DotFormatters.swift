@@ -27,4 +27,13 @@ enum DotFormatters {
         let hours = Int(ceil(Double(minutes) / 60))
         return "Last dose logged · minimum gap has \(hours) hr remaining"
     }
+
+    static func shortGap(seconds: TimeInterval) -> String {
+        let minutes = max(1, Int(ceil(seconds / 60)))
+        if minutes < 60 {
+            return "\(minutes) min"
+        }
+        let hours = Int(ceil(Double(minutes) / 60))
+        return "\(hours) hr"
+    }
 }

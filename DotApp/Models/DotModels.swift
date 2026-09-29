@@ -43,6 +43,7 @@ final class Medication {
     var maximumDosesPerRolling24Hours: Int
     var minimumGapHours: Double
     var createdAt: Date
+    var archivedAt: Date?
 
     init(
         id: UUID = UUID(),
@@ -52,7 +53,8 @@ final class Medication {
         doseUnit: String,
         maximumDosesPerRolling24Hours: Int,
         minimumGapHours: Double,
-        createdAt: Date = .now
+        createdAt: Date = .now,
+        archivedAt: Date? = nil
     ) {
         self.id = id
         self.profileID = profileID
@@ -62,6 +64,7 @@ final class Medication {
         self.maximumDosesPerRolling24Hours = maximumDosesPerRolling24Hours
         self.minimumGapHours = minimumGapHours
         self.createdAt = createdAt
+        self.archivedAt = archivedAt
     }
 
     var displayDose: String {
@@ -74,10 +77,77 @@ final class DoseLog {
     @Attribute(.unique) var id: UUID
     var medicationID: UUID
     var timestamp: Date
+    var recordedMedicationName: String?
+    var recordedDoseAmount: Double?
+    var recordedDoseUnit: String?
+    var confirmationState: String?
+    var correctedAt: Date?
 
-    init(id: UUID = UUID(), medicationID: UUID, timestamp: Date = .now) {
+    init(
+        id: UUID = UUID(),
+        medicationID: UUID,
+        timestamp: Date = .now,
+        medicationName: String? = nil,
+        doseAmount: Double? = nil,
+        doseUnit: String? = nil,
+        isUncertain: Bool = false,
+        correctedAt: Date? = nil
+    ) {
         self.id = id
         self.medicationID = medicationID
         self.timestamp = timestamp
+        self.recordedMedicationName = medicationName
+        self.recordedDoseAmount = doseAmount
+        self.recordedDoseUnit = doseUnit
+        self.confirmationState = isUncertain ? "uncertain" : "confirmed"
+        self.correctedAt = correctedAt
+    }
+
+    var isUncertain: Bool {
+        confirmationState == "uncertain"
+    }
+
+    func displayName(fallback medication: Medication?) -> String {
+        recordedMedicationName ?? medication?.name ?? "Archived medicine"
+    }
+
+    func displayDose(fallback medication: Medication?) -> String {
+        let amount = recordedDoseAmount ?? medication?.doseAmount
+        let unit = recordedDoseUnit ?? medication?.doseUnit
+        guard let amount, let unit else { return "Dose not recorded" }
+        return "\(amount.formatted(.number.precision(.fractionLength(0...2)))) \(unit)"
+    }
+}
+
+@Model
+final class PlannedDose {
+    @Attribute(.unique) var id: UUID
+    var profileID: UUID
+    var medicationID: UUID
+    var medicationName: String
+    var doseAmount: Double
+    var doseUnit: String
+    var plannedAt: Date
+
+    init(
+        id: UUID = UUID(),
+        profileID: UUID,
+        medicationID: UUID,
+        medicationName: String,
+        doseAmount: Double,
+        doseUnit: String,
+        plannedAt: Date = .now
+    ) {
+        self.id = id
+        self.profileID = profileID
+        self.medicationID = medicationID
+        self.medicationName = medicationName
+        self.doseAmount = doseAmount
+        self.doseUnit = doseUnit
+        self.plannedAt = plannedAt
+    }
+
+    var displayDose: String {
+        "\(doseAmount.formatted(.number.precision(.fractionLength(0...2)))) \(doseUnit)"
     }
 }

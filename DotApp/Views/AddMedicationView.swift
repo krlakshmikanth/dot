@@ -5,18 +5,25 @@ struct AddMedicationView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     let profileID: UUID
+    let medication: Medication?
     var onSave: ((Medication) -> Void)?
 
-    @State private var draft = MedicationDraft()
+    @State private var draft: MedicationDraft
     @FocusState private var focusedField: Field?
 
     private enum Field {
         case name, amount, maximum, gap
     }
 
-    init(profileID: UUID, onSave: ((Medication) -> Void)? = nil) {
+    init(
+        profileID: UUID,
+        medication: Medication? = nil,
+        onSave: ((Medication) -> Void)? = nil
+    ) {
         self.profileID = profileID
+        self.medication = medication
         self.onSave = onSave
+        _draft = State(initialValue: medication.map(MedicationDraft.init(medication:)) ?? MedicationDraft())
     }
 
     var body: some View {
@@ -58,15 +65,15 @@ struct AddMedicationView: View {
                 }
 
                 Section {
-                    Button("Save medication", action: save)
+                    Button(medication == nil ? "Save medication" : "Save changes", action: save)
                         .disabled(draft.validatedValues == nil)
                         .frame(maxWidth: .infinity, minHeight: 44)
                         .accessibilityIdentifier("save-medication")
                 } footer: {
-                    Text("All fields must contain positive values. Dot does not add or verify clinical recommendations.")
+                    Text("All fields must contain positive values. dot does not add or verify clinical recommendations. Existing dose history is not rewritten when you edit a medicine.")
                 }
             }
-            .navigationTitle("Add medication")
+            .navigationTitle(medication == nil ? "Add medication" : "Edit medication")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -79,17 +86,28 @@ struct AddMedicationView: View {
 
     private func save() {
         guard let values = draft.validatedValues else { return }
-        let medication = Medication(
-            profileID: profileID,
-            name: values.name,
-            doseAmount: values.doseAmount,
-            doseUnit: values.unit,
-            maximumDosesPerRolling24Hours: values.maximumDoses,
-            minimumGapHours: values.minimumGapHours
-        )
-        modelContext.insert(medication)
+        let savedMedication: Medication
+        if let medication {
+            medication.name = values.name
+            medication.doseAmount = values.doseAmount
+            medication.doseUnit = values.unit
+            medication.maximumDosesPerRolling24Hours = values.maximumDoses
+            medication.minimumGapHours = values.minimumGapHours
+            savedMedication = medication
+        } else {
+            let newMedication = Medication(
+                profileID: profileID,
+                name: values.name,
+                doseAmount: values.doseAmount,
+                doseUnit: values.unit,
+                maximumDosesPerRolling24Hours: values.maximumDoses,
+                minimumGapHours: values.minimumGapHours
+            )
+            modelContext.insert(newMedication)
+            savedMedication = newMedication
+        }
         if let onSave {
-            onSave(medication)
+            onSave(savedMedication)
         } else {
             dismiss()
         }
