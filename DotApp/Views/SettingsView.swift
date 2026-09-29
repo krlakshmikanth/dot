@@ -62,6 +62,24 @@ struct SettingsView: View {
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
+
+                Section("Privacy & support") {
+                    Link(destination: URL(string: "https://github.com/krlakshmikanth/dot/blob/main/PRIVACY.md")!) {
+                        Label("Privacy Policy", systemImage: "hand.raised")
+                            .frame(minHeight: 44)
+                    }
+                    .accessibilityIdentifier("privacy-policy")
+
+                    Link(destination: URL(string: "https://github.com/krlakshmikanth/dot/issues")!) {
+                        Label("Support", systemImage: "questionmark.circle")
+                            .frame(minHeight: 44)
+                    }
+                    .accessibilityIdentifier("support-link")
+
+                    Text("Profiles, medicines, plans and dose history stay in dot's local app data. The app has no account, analytics, advertising or cloud sync.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
             }
             .navigationTitle("Settings")
         }

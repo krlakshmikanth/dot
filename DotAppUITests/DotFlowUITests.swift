@@ -110,6 +110,11 @@ final class DotFlowUITests: XCTestCase {
 
         XCTAssertEqual(profileMenu.label, "Switch profile. Active profile Me")
         XCTAssertTrue(app.staticTexts["Sam"].exists)
+
+        app.swipeUp()
+        app.swipeUp()
+        XCTAssertTrue(app.descendants(matching: .any)["privacy-policy"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.descendants(matching: .any)["support-link"].exists)
     }
 
     func testPrimaryActionsAreAvailableInDarkMode() {
