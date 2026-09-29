@@ -46,6 +46,7 @@ struct StatusView: View {
                     .frame(maxWidth: .infinity)
 
                     Button("Add a medicine", action: onAddMedication)
+                        .foregroundStyle(Color(.systemBackground))
                         .buttonStyle(.borderedProminent)
                         .tint(.primary)
                         .frame(maxWidth: .infinity)

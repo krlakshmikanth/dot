@@ -112,6 +112,26 @@ final class DotFlowUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Sam"].exists)
     }
 
+    func testPrimaryActionsAreAvailableInDarkMode() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-dot-ui-testing"]
+        app.launch()
+
+        let switchToDark = app.buttons["Switch to dark appearance"]
+        if switchToDark.waitForExistence(timeout: 3) {
+            switchToDark.tap()
+        }
+
+        let planDose = app.buttons["plan-dose"]
+        XCTAssertTrue(planDose.waitForExistence(timeout: 3))
+        XCTAssertTrue(planDose.isHittable)
+
+        app.tabBars.buttons["History"].tap()
+        let addMedicine = app.buttons["Add a medicine"]
+        XCTAssertTrue(addMedicine.waitForExistence(timeout: 3))
+        XCTAssertTrue(addMedicine.isHittable)
+    }
+
     private func replaceText(in field: XCUIElement, with value: String) {
         XCTAssertTrue(field.waitForExistence(timeout: 3))
         field.tap()

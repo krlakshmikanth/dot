@@ -73,6 +73,7 @@ struct HomeView: View {
                 } label: {
                     Label(plannedDose == nil ? "Plan a dose" : "Finish planned dose", systemImage: plannedDose == nil ? "plus" : "clock")
                         .font(.headline)
+                        .foregroundStyle(Color(.systemBackground))
                         .frame(maxWidth: .infinity, minHeight: 52)
                 }
                 .buttonStyle(.borderedProminent)
