@@ -17,16 +17,16 @@ Not included yet: notifications, medication databases, interaction checking, clo
 3. Select an iPhone simulator.
 4. Press Run.
 
-This Mac currently has Xcode at `/Applications/Xcode-beta.app`, while the command line still points to Command Line Tools. Either select the Xcode app in **Xcode → Settings → Locations → Command Line Tools**, or run:
+This Mac currently has stable Xcode at `/Applications/Xcode.app`, while the command line still points to Command Line Tools. Either select the Xcode app in **Xcode → Settings → Locations → Command Line Tools**, or run:
 
 ```sh
-sudo xcode-select --switch /Applications/Xcode-beta.app/Contents/Developer
+sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 ```
 
 Until that is changed, command-line builds can use:
 
 ```sh
-DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer xcodebuild \
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcodebuild \
   -project Dot.xcodeproj \
   -scheme dot \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
